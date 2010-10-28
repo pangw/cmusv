@@ -52,6 +52,41 @@ Factory.define :howard, :parent => :person do |p|
   p.is_student 1
 end
 
+Factory.define :pang, :parent => :person do |p|
+  p.persistence_token Time.now.to_f.to_s
+  p.first_name "Pang"
+  p.last_name "Wu"
+  p.human_name "Pang Wu"
+  p.email "pang.wu@sv.cmu.edu"
+  p.is_student 1
+end
+
+Factory.define :phil, :parent => :person do |p|
+  p.persistence_token Time.now.to_f.to_s
+  p.first_name "Phil"
+  p.last_name "Melzer"
+  p.human_name "Phil Melzer"
+  p.email "phil.melzer@sv.cmu.edu"
+  p.is_student 1
+end
+
+Factory.define :vinay, :parent => :person do |p|
+  p.persistence_token Time.now.to_f.to_s
+  p.first_name "Vinay"
+  p.last_name "Prasad"
+  p.human_name "Vinay Prasad"
+  p.email "vinay.prasad@sv.cmu.edu"
+  p.is_student 1
+end
+
+Factory.define :gaurav, :parent => :person do |p|
+  p.persistence_token Time.now.to_f.to_s
+  p.first_name "Gaurav"
+  p.last_name "Sinha"
+  p.human_name "Gaurav Sinha"
+  p.email "gaurav.sinha@sv.cmu.edu"
+  p.is_student 1
+end
 
 Factory.define :awe_smith, :parent => :person do |p|
   p.is_student 1
