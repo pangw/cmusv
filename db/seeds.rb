@@ -164,6 +164,10 @@ Factory.create(:howard)
 Factory.create(:awe_smith)
 Factory.create(:betty_ross)
 Factory.create(:charlie_moss)
+Factory.create(:pang)
+Factory.create(:phil)
+Factory.create(:gaurav)
+Factory.create(:vinay)
 
 architecture = Factory.create(:architecture)
 
