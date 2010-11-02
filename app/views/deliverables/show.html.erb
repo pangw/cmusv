@@ -1,0 +1,50 @@
+<p>
+  <b>Team:</b>
+  <%=h @deliverable.team_id %>
+</p>
+
+<p>
+  <b>Uploader:</b>
+  <%=h @deliverable.uploader_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @deliverable.name %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  <%=h @deliverable.comments %>
+</p>
+
+<p>
+  <b>Task number:</b>
+  <%=h @deliverable.task_number %>
+</p>
+
+<p>
+  <b>Course number:</b>
+  <%=h @deliverable.course_number_id %>
+</p>
+
+<p>
+  <b>Is individual:</b>
+  <%=h @deliverable.is_individual %>
+</p>
+<p>
+    <b>Edits history:</b><br/>
+	    <% @deliverableversion.reverse.each do |version| %>
+	  Version <%= version.version %> Updated: <%= version.updated_at %>
+	  <%= link_to '(restore)', :action => 'restore',
+	                   :version_id => version.version,
+	                   :deliverable_id => @deliverable.id %><br/>
+	<% end %>
+
+</p>
+<p>
+<%= link_to "show attachment", @deliverable.attachment.url %>
+  </p>
+
+<%= link_to 'Edit', edit_deliverable_path(@deliverable) %> |
+<%= link_to 'Back', deliverables_path %>

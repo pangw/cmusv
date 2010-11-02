@@ -1,0 +1,40 @@
+<h1>Editing deliverable</h1>
+
+<% form_for(@deliverable) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :team_id %><br />
+    <%= f.text_field :team_id %>
+  </p>
+  <p>
+    <%= f.label :uploader_id %><br />
+    <%= f.text_field :uploader_id %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :comments %><br />
+    <%= f.text_field :comments %>
+  </p>
+  <p>
+    <%= f.label :task_number %><br />
+    <%= f.text_field :task_number %>
+  </p>
+  <p>
+    <%= f.label :course_number_id %><br />
+    <%= f.text_field :course_number_id %>
+  </p>
+  <p>
+    <%= f.label :is_individual %><br />
+    <%= f.check_box :is_individual %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @deliverable %> |
+<%= link_to 'Back', deliverables_path %>

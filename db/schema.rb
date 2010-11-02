@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100930025344) do
+ActiveRecord::Schema.define(:version => 20101101235649) do
 
   create_table "course_numbers", :force => true do |t|
     t.string   "name"
@@ -73,6 +73,41 @@ ActiveRecord::Schema.define(:version => 20100930025344) do
     t.text     "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "deliverable_versions", :force => true do |t|
+    t.integer  "deliverable_id"
+    t.integer  "version"
+    t.integer  "team_id"
+    t.integer  "uploader_id"
+    t.string   "name"
+    t.string   "comments"
+    t.integer  "task_number"
+    t.integer  "course_number_id"
+    t.boolean  "is_individual"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+  end
+
+  add_index "deliverable_versions", ["deliverable_id"], :name => "index_deliverable_versions_on_deliverable_id"
+
+  create_table "deliverables", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "uploader_id"
+    t.string   "name"
+    t.string   "comments"
+    t.integer  "task_number"
+    t.integer  "course_number_id"
+    t.boolean  "is_individual"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.integer  "version"
   end
 
   create_table "effort_log_line_items", :force => true do |t|

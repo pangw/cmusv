@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  team_id: 
+  uploader_id: 
+  name: 
+  comments: 
+  task_number: 
+  course_number_id: 
+  is_individual: false
+
+two:
+  team_id: 
+  uploader_id: 
+  name: 
+  comments: 
+  task_number: 
+  course_number_id: 
+  is_individual: false
