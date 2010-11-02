@@ -20,6 +20,7 @@ gem 'taps'
 group :plugins do
   gem 'authlogic'
   gem 'calendar_date_select'
+
 end
 
 
@@ -56,6 +57,9 @@ group :development, :test do
   gem "autotest-fsevent" if RUBY_PLATFORM =~ /darwin/
   gem 'autotest-growl' if RUBY_PLATFORM =~ /darwin/  
   gem 'test-unit' #'=1.2.3' #Downgrading so that autotest, rspec will work
+  gem 'paperclip',  '2.3.1.1'
+  gem 'acts_as_versioned'
+  
 end
 
 #gem 'gchartrb'
