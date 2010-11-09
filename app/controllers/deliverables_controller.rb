@@ -1,6 +1,11 @@
 class DeliverablesController < ApplicationController
   # GET /deliverables
   # GET /deliverables.xml
+
+  layout 'cmu_sv'
+  #before_filter :authenticate_user, :except => [:index, :list]
+
+  
   def index
     @deliverables = Deliverable.all
 
@@ -15,7 +20,12 @@ class DeliverablesController < ApplicationController
   def show
     @deliverable = Deliverable.find(params[:id])
 
-    @deliverableversion = @deliverable.versions.find(:all)
+    if !(current_user.is_admin? || current_user.is_staff? || @deliverable.uploader_id == current_user.id)
+      flash[:error] = "You don't have permission to do this action."
+      redirect_to(deliverables_url) and return
+    end
+
+    @deliverable_versions = @deliverable.versions.find(:all)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -43,6 +53,7 @@ class DeliverablesController < ApplicationController
   # POST /deliverables.xml
   def create
     @deliverable = Deliverable.new(params[:deliverable])
+    @deliverable.uploader_id = current_user.id
 
     respond_to do |format|
       if @deliverable.save
@@ -84,4 +95,17 @@ class DeliverablesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+def restore
+  puts "testing restore"
+  puts current_user.id
+   @deliverable = Deliverable.find(params[:deliverable_id])
+   @deliverable.revert_to! params[:version_id]
+   redirect_to :action => 'show', :id => @deliverable
+end
+
+private
+  def authenticate_user
+  end
+
 end

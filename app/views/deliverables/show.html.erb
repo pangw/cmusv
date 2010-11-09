@@ -34,16 +34,16 @@
 </p>
 <p>
     <b>Edits history:</b><br/>
-	    <% @deliverableversion.reverse.each do |version| %>
+	    <% @deliverable_versions.reverse.each do |version| %>
 	  Version <%= version.version %> Updated: <%= version.updated_at %>
-	  <%= link_to '(restore)', :action => 'restore',
+	  <%= link_to '(restore)', :controller => 'deliverables', :action => 'restore',
 	                   :version_id => version.version,
 	                   :deliverable_id => @deliverable.id %><br/>
 	<% end %>
 
 </p>
 <p>
-<%= link_to "show attachment", @deliverable.attachment.url %>
+<%= link_to "Download attachment", @deliverable.attachment.url %>
   </p>
 
 <%= link_to 'Edit', edit_deliverable_path(@deliverable) %> |

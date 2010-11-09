@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :deliverables
+  map.resources :deliverables, :collection => {:restore => :get}
 
 
   map.connect 'delayed_system_jobs/',  :controller => 'delayed_system_jobs', :action => "index"
