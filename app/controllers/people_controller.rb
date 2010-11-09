@@ -32,6 +32,10 @@ class PeopleController < ApplicationController
 #    end
   end
 
+  def show_filtered_people
+
+  end
+  
   def phone_book
     index
   end

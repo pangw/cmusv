@@ -1,0 +1,57 @@
+<table id="people_table" class="tablesorter">
+  <thead>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Icons</th>
+    <th>Graduation year</th>
+    <th>Graduate program</th>
+    <th>Graduate track</th>
+    <!-- New -->
+    <!--
+    <th>Phone Number</th>
+    <th>Email</th>
+    <th>Tigris</th>
+
+    <th>Local-Near-Remote</th>
+    <th>Address</th>
+
+    <th>Track</th>
+    <th>FT/PT</th>
+    <th>Active</th>
+    <th>HasImage</th>
+    -->
+  </tr>
+</thead>
+<tbody>
+<% for person in @people %>
+
+<tr class="tablesorter <%if person.is_student %>student<% end %> <% if person.is_staff %>staff<%end%>"  onmouseover="updateImage('<%= image_path(person.image_uri) %>','<%=person.human_name%>')">
+    <td><%= twiki_user_link(person.twiki_name, person.first_name) %></td>
+    <td><%= twiki_user_link(person.twiki_name, person.last_name) %></td>
+    <td><a href='http://info.sv.cmu.edu/twiki/bin/view/Main/<%= person.twiki_name %>' target='_top'><%= image_tag('/images/twiki.gif', :width=>'16', :height=>'16', :border=>"0", :alt=>"My TWiki page", :title=>"My TWiki page") %></a>
+        <% if person.is_adobe_connect_host %><%= image_tag("/images/connect.gif", :width=>"16", :height=>"16", :alt=>"Adobe Connect Host", :title=>"I am Adobe Connect Host") %><% end %>
+        <% if current_user.is_staff? || current_user.is_admin? %>
+        <%= link_to image_tag("/images/my_teams2.gif", :width=>"16", :height=>"16", :alt=>"My Teams", :title=>"My Teams"), my_teams_path(person.id) %>
+        <% end %>
+    </td>
+    <td><%=h person.graduation_year %></td>
+    <td><%=h person.masters_program %></td>
+    <td><%=h person.masters_track %></td>
+    <td><%= link_to 'Show', person %></td>
+<% if current_user && current_user.is_staff? %>
+    <td><%= link_to 'Edit', edit_person_path(person) %></td>
+<% else %>
+    <td>&nbsp;</td>
+<% end %>
+<!--
+<% if current_user && current_user.is_admin? %>
+    <td><%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>
+<% else %>
+    <td>&nbsp;</td>
+<% end %>
+-->
+  </tr>
+<% end %>
+</tbody>
+</table>

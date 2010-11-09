@@ -85,51 +85,97 @@ function updateImage(uri,label)
   <%= image_tag("/images/mascot.jpg", :width=>"150", :alt=>"Temporary Picture", :id=>"image_box_image")%><%= image_tag("/images/tablesorter/cross.png", :width=>"16", :height=>"16", :alt=>"Close Me", :style=>"float:right;cursor:pointer", :id=>"close_image_box") %>
   <div id='image_box_label'></div>
 </div>
-
-<table id="people_table" class="tablesorter">
-  <thead>
+<table>
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Icons</th>
-    <th>Graduation year</th>
-    <th>Graduate program</th>
-    <th>Graduate track</th>
-  </tr>
-</thead>
-<tbody>
-<% for person in @people %>
-
-<tr class="tablesorter <%if person.is_student %>student<% end %> <% if person.is_staff %>staff<%end%>"  onmouseover="updateImage('<%= image_path(person.image_uri) %>','<%=person.human_name%>')">
-    <td><%= twiki_user_link(person.twiki_name, person.first_name) %></td>
-    <td><%= twiki_user_link(person.twiki_name, person.last_name) %></td>    
-    <td><a href='http://info.sv.cmu.edu/twiki/bin/view/Main/<%= person.twiki_name %>' target='_top'><%= image_tag('/images/twiki.gif', :width=>'16', :height=>'16', :border=>"0", :alt=>"My TWiki page", :title=>"My TWiki page") %></a>
-        <% if person.is_adobe_connect_host %><%= image_tag("/images/connect.gif", :width=>"16", :height=>"16", :alt=>"Adobe Connect Host", :title=>"I am Adobe Connect Host") %><% end %>
-        <% if current_user.is_staff? || current_user.is_admin? %>
-        <%= link_to image_tag("/images/my_teams2.gif", :width=>"16", :height=>"16", :alt=>"My Teams", :title=>"My Teams"), my_teams_path(person.id) %>
-        <% end %>
+    <td>
+      <%= check_box :colums, :phone_num %>
     </td>
-    <td><%=h person.graduation_year %></td>
-    <td><%=h person.masters_program %></td>
-    <td><%=h person.masters_track %></td>
-    <td><%= link_to 'Show', person %></td>
-<% if current_user && current_user.is_staff? %>
-    <td><%= link_to 'Edit', edit_person_path(person) %></td>
-<% else %>
-    <td>&nbsp;</td>
-<% end %>
-<!--
-<% if current_user && current_user.is_admin? %>
-    <td><%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>
-<% else %>
-    <td>&nbsp;</td>
-<% end %>
--->
+    <td>
+    <%= label :columns, :phone_num, "Phone Number" %>
+    </td>
+  <td>
+    <%= text_field_tag :phone_num %>
+    </td>
   </tr>
-<% end %>
-</tbody>
+  <tr>
+    <td>
+    <%= check_box :colums, :has_email %>
+    </td>
+    <td>
+    <%= label :columns, :has_email, "Email" %>
+    </td>
+    <td>
+    <%= text_field_tag :has_email %>
+    </td>
+  </tr>
+  <tr>
+
+    <td><%= check_box :colums, :has_tigris %></td>
+    <td><%= label :columns, :has_tigris, "Tigris" %></td>
+    <td><%= text_field_tag :has_tigris %></td>
+  </tr>
+  <tr>
+
+    <td><%= check_box :colums, :local_near_remote %></td>
+    <td><%= label :columns, :local_near_remote, "Is local" %></td>
+    <td><%= text_field_tag :local_near_remote %></td>
+  </tr>
+  <tr>
+
+    <td><%= check_box :colums, :city_state %></td>
+    <td><%= label :columns, :city_state, "City/State" %></td>
+    <td><%= text_field_tag :city_state %></td>
+  </tr>
+  <tr>
+
+    <td><%= check_box :colums, :track %></td>
+    <td><%= label :columns, :track, "Track" %></td>
+    <td><%= text_field_tag :track %></td>
+  </tr>
+  <tr>
+
+    <td><%= check_box :colums, :is_pt %></td>
+    <td><%= label :columns, :is_pt, "Is Part-time" %></td>
+    <td><%= text_field_tag :is_pt %></td>
+  </tr>
+  <tr>
+
+    <td><%= check_box :colums, :active %></td>
+    <td><%= label :columns, :active, "Is Active" %></td>
+    <td><%= text_field_tag :active %></td>
+  </tr>
+  <tr>
+
+    <td><%= check_box :colums, :has_image %></td>
+    <td><%= label :columns, :has_image, "Has Image" %></td>
+    <td></td>
+  </tr>
+  <tr>
+
+    <td><%= check_box :colums, :course %></td>
+    <td><%= label :columns, :course, "Course" %></td>
+    <td><%= text_field_tag :course %></td>
+  </tr>
+  <tr>
+
+    <td><%= check_box :colums, :semester %></td>
+    <td><%= label :columns, :semester, "Semester" %></td>
+    <td><%= text_field_tag :semester %></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+      <%= button_to "Search" %></td>
+    <td>
+      <%= button_to "Cancel" %>
+    </td>
+  </tr>
+
 </table>
 
+<div id="filtered_people_table">
+  <%= render :partial => "show_filtered_people"  %>
+</div>
 <br />
 
 <% if current_user && (current_user.is_admin? || current_user.is_staff?) %>
