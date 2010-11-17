@@ -7,7 +7,7 @@
 
   <p>
     <%= f.label :team_id %><br />
-    <%= f.text_field :team_id %>
+    <%= f.select :team_id, @deliverable.uploader.teams.collect{|team|[team.name, team.id]} %>
   </p>
   <p>
     <%= f.label :name %><br />

@@ -155,6 +155,17 @@ Factory.define :team_triumphant, :class => Team do |t|
 end
 
 
+Factory.define :team_metrics_has_you, :class => Team do |t|
+ t.name "The Metrics Has You"
+ t.email "fall-2010-themetricshasyou@west.cmu.edu"
+ t.tigris_space "http://se-2010-fall-aspf-mfse-team3.tigris.org/servlets/ProjectDocumentList"
+ t.twiki_space "http://info.sv.cmu.edu/twiki/bin/view/Graffiti/WebHome"
+ t.person_name "Phil Melzer"
+ t.person_name2 "Vinay Prasad"
+ t.person_name3 "Pang Wu"
+ t.person_name4 "Gaurav Sinha"
+end
+
 
 Factory.create(:todd)
 martin = Factory.create(:martin)
@@ -174,3 +185,4 @@ architecture = Factory.create(:architecture)
 
 Factory.create(:team_triumphant, :primary_faculty_id => martin.id, :course_id=> architecture)
 
+Factory.create(:team_metrics_has_you, :primary_faculty_id => martin.id, :course_id=> architecture)
